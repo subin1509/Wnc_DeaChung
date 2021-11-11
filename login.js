@@ -4,7 +4,6 @@ sign_up.addEventListener("click", signup_display);
 var cancel = document.getElementById("cancel");
 cancel.addEventListener("click", cancel_display);
 
-
 document.getElementById("signup_box").style.display="none";
 function signup_display() {
     document.getElementById("signup_box").style.display="block";
