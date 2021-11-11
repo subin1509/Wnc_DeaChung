@@ -27,3 +27,10 @@ hr {
 .div {
     padding: 10%;
 }
+
+.loginbox {
+    padding: 5%;
+    border: 1px solid gray;
+    padding-left: 5%;
+    padding-right: 5%;
+}
