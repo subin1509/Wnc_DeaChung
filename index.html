@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="./main.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <title>Document</title>
+
+        <script defer src="/__/firebase/9.4.0/firebase-app-compat.js"></script>
+        <script defer src="/__/firebase/9.4.0/firebase-auth-compat.js"></script>
+        <script
+            defer
+            src="/__/firebase/9.4.0/firebase-database-compat.js"
+        ></script>
+        <script
+            defer
+            src="/__/firebase/9.4.0/firebase-firestore-compat.js"
+        ></script>
+        <script
+            defer
+            src="/__/firebase/9.4.0/firebase-functions-compat.js"
+        ></script>
+        <script
+            defer
+            src="/__/firebase/9.4.0/firebase-messaging-compat.js"
+        ></script>
+        <script
+            defer
+            src="/__/firebase/9.4.0/firebase-storage-compat.js"
+        ></script>
+        <script
+            defer
+            src="/__/firebase/9.4.0/firebase-analytics-compat.js"
+        ></script>
+        <script
+            defer
+            src="/__/firebase/9.4.0/firebase-remote-config-compat.js"
+        ></script>
+        <script
+            defer
+            src="/__/firebase/9.4.0/firebase-performance-compat.js"
+        ></script>
+
+        <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    </head>
+    <body>
+        <h1>Wnc Programming Contest</h1>
+        <div id="top_navi">
+            <img
+                id="alert_icon"
+                src="./images/notification.png"
+                alt="알림 아이콘"
+            />
+
+            <button id="login_btn">로그인</button>
+        </div>
+        <div id="side_navi">
+            side navi
+            <input id="teacherList" type="button" value="선생님 목록보기" />
+        </div>
+        <div id="board">
+            <div id="board_search">
+                <select name="category">
+                    <option id="title" selected>제목</option>
+                    <option id="teacher">선생님</option>
+                </select>
+                <input class="category" id="category_input" value="한석원" />
+                <input type="button" id="category_search" value="검색" />
+                <br />
+                <select name="recruitment">
+                    <option id="recruitment" selected>모집인원</option>
+                </select>
+                <input
+                    class="category"
+                    id="recruitment_input"
+                    type="number"
+                    value="3"
+                />
+            </div>
+
+            <div id="board_table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>첨부</th>
+                            <th>작성자</th>
+                            <th>등록일</th>
+                            <th>조회수</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>공지</td>
+                            <td>
+                                ***2021학년도 2학기 영어능력 특별 인정 실시
+                                안내-
+                            </td>
+                            <td>ABCD</td>
+                            <td>조교 김동훈</td>
+                            <td>21.09.30</td>
+                            <td>777</td>
+                        </tr>
+                        <tr>
+                            <td>공지</td>
+                            <td>
+                                ***2021학년도 2학기 영어능력 특별 인정 실시
+                                안내-
+                            </td>
+                            <td>ABCD</td>
+                            <td>조교 김동훈</td>
+                            <td>21.09.30</td>
+                            <td>777</td>
+                        </tr>
+                        <tr>
+                            <td>공지</td>
+                            <td>
+                                ***2021학년도 2학기 영어능력 특별 인정 실시
+                                안내-
+                            </td>
+                            <td>ABCD</td>
+                            <td>조교 김동훈</td>
+                            <td>21.09.30</td>
+                            <td>777</td>
+                        </tr>
+                        <tr>
+                            <td>공지</td>
+                            <td>
+                                ***2021학년도 2학기 영어능력 특별 인정 실시
+                                안내-
+                            </td>
+                            <td>ABCD</td>
+                            <td>조교 김동훈</td>
+                            <td>21.09.30</td>
+                            <td>777</td>
+                        </tr>
+                        <tr>
+                            <td>공지</td>
+                            <td>
+                                ***2021학년도 2학기 영어능력 특별 인정 실시
+                                안내-
+                            </td>
+                            <td>ABCD</td>
+                            <td>조교 김동훈</td>
+                            <td>21.09.30</td>
+                            <td>777</td>
+                        </tr>
+                        <tr>
+                            <td>공지</td>
+                            <td>
+                                ***2021학년도 2학기 영어능력 특별 인정 실시
+                                안내-
+                            </td>
+                            <td>ABCD</td>
+                            <td>조교 김동훈</td>
+                            <td>21.09.30</td>
+                            <td>777</td>
+                        </tr>
+                        <tr>
+                            <td>공지</td>
+                            <td>
+                                ***2021학년도 2학기 영어능력 특별 인정 실시
+                                안내-
+                            </td>
+                            <td>ABCD</td>
+                            <td>조교 김동훈</td>
+                            <td>21.09.30</td>
+                            <td>777</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="board_page">
+                <img
+                    id="page_icon"
+                    src="./images/left-arrow.png"
+                    alt="알림 아이콘"
+                />
+                <span id="page_index">1</span>
+                <img
+                    id="page_icon"
+                    src="./images/right-arrow.png"
+                    alt="알림 아이콘"
+                />
+            </div>
+        </div>
+
+        <script src="./main.js"></script>
+
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-analytics.js";
+
+            // Import the functions you need from the SDKs you need
+            // import { initializeApp } from "firebase/app";
+            // import { getAnalytics } from "firebase/analytics";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+                apiKey: "AIzaSyDiOMeXpGNgYBSphTJZN4cZLeJRCtV9Ae4",
+                authDomain: "wnc-deachung.firebaseapp.com",
+                projectId: "wnc-deachung",
+                storageBucket: "wnc-deachung.appspot.com",
+                messagingSenderId: "769266517788",
+                appId: "1:769266517788:web:7f37d9571d2850627ddcd9",
+                measurementId: "G-Y3NNN50WLQ",
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+        </script>
+    </body>
+</html>
