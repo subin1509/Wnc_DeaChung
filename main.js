@@ -7,5 +7,5 @@ function click_teacherList() {
 }
 
 function click() {
-    open("./sample.html");
+    open("./login.html");
 }
