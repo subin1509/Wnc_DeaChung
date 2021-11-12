@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="managerPage.css"/>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     </head>
     <body>
         <h1>관리자 페이지</h1>
@@ -47,5 +49,22 @@
             <div class="item">D</div>
         </div>
         <script type="text/javascript" src="managerPage.js"></script>
+
+        <script>
+            const firebaseConfig = {
+                apiKey: "AIzaSyDiOMeXpGNgYBSphTJZN4cZLeJRCtV9Ae4",
+                authDomain: "wnc-deachung.firebaseapp.com",
+                projectId: "wnc-deachung",
+                storageBucket: "wnc-deachung.appspot.com",
+                messagingSenderId: "769266517788",
+                appId: "1:769266517788:web:7f37d9571d2850627ddcd9",
+                measurementId: "G-Y3NNN50WLQ",
+            };
+            firebase.initializeApp(firebaseConfig);
+
+            var db = firebase.firestore();
+        </script>
+
+        
     </body>
 </html>
