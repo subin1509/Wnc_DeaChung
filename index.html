@@ -5,8 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link href="./main.css" rel="stylesheet" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
         <title>Document</title>
@@ -52,11 +52,16 @@
         <h1>Wnc Programming Contest</h1>
 
         <div id="top_navi">
+            <button id="register_board">게시물 등록하기</button>
+            <button id="my_board">내 게시물</button>
+            <span id="users"></span>
+            <button id="update">회원정보수정</button>
             <img
                 id="alert_icon"
                 src="./images/is_notification.png"
                 alt="알림 아이콘"
             />
+            <button id="logout_btn">로그아웃</button>
             <button id="login_btn">로그인</button>
         </div>
         <div id="side_navi">
@@ -89,10 +94,10 @@
                         <tr>
                             <th>번호</th>
                             <th>제목</th>
-                            <th>첨부</th>
+                            <th>모집인원</th>
                             <th>작성자</th>
                             <th>등록일</th>
-                            <th>조회수</th>
+                            <th>과외 기간</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -102,10 +107,10 @@
                                 ***2021학년도 2학기 영어능력 특별 인정 실시
                                 안내-
                             </td>
-                            <td>ABCD</td>
+                            <td>3</td>
                             <td>조교 김동훈</td>
                             <td>21.09.30</td>
-                            <td>777</td>
+                            <td>3개월</td>
                         </tr>
                         <tr>
                             <td>공지</td>

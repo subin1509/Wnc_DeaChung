@@ -1,6 +1,26 @@
 h1 {
     text-align: center;
 }
+#register_board {
+    margin-left: 50%;
+    display: none;
+    margin-right: 50px;
+}
+#my_board {
+    display: none;
+    margin-right: 50px;
+}
+#update {
+    display: none;
+    margin-left: 30px;
+}
+#logout_btn {
+    /* height: 30px; */
+    /* flex-grow: 1; */
+    /* display: inline-block; */
+    display: none;
+    margin-right: 50px;
+}
 #login_btn {
     /* height: 30px; */
     /* flex-grow: 1; */
@@ -8,16 +28,14 @@ h1 {
     margin-right: 50px;
 }
 #alert_icon {
+    margin-left: auto;
     display: block;
     width: 100px;
     height: 50px;
+    margin-right: 50px;
     /* object-fit: cover; */
     /* height: 100px; */
     /* width: 100; */
-
-    margin-left: auto;
-
-    margin-right: 50px;
 }
 #top_navi {
     /* height: 200px; */
