@@ -5,6 +5,8 @@
         <link rel="stylesheet" href="managerPage.css"/>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
     </head>
     <body>
         <h1>관리자 페이지</h1>
@@ -20,51 +22,9 @@
             </span>
         </div>
         <br>
-        <div class="container">
-            <div class="item">사이드</div>
-            <div class="item">
-                <img src="./images/cake.png">
-                <div class="info">
-                    <p>한석원 선생님</p>
-                    <ul>
-                        <li>분야: 수학</li>
-                        <li>별점: 4.7</li>
-                        <li>경력: 
-                            <ol>
-                                <li>00대학 졸업</li>
-                                <li>00대회 대상</li>
-                                <li>과외 경력 3년</li>
-                            </ol>
-                        </li>
-                    </ul>
-                </div>
-                <div class="blacklist">
-                    <p>신고 접수 : 0</p>
-                    <button id="blacklistBtn">블랙리스트 등록</button>
-                </div>
-            </div>
-            <div class="item">B</div>
-            <div class="item">사이드</div>
-            <div class="item">C</div>
-            <div class="item">D</div>
+        <div id="teacherList" class="container">
+
         </div>
         <script type="text/javascript" src="managerPage.js"></script>
-
-        <script>
-            const firebaseConfig = {
-                apiKey: "AIzaSyDiOMeXpGNgYBSphTJZN4cZLeJRCtV9Ae4",
-                authDomain: "wnc-deachung.firebaseapp.com",
-                projectId: "wnc-deachung",
-                storageBucket: "wnc-deachung.appspot.com",
-                messagingSenderId: "769266517788",
-                appId: "1:769266517788:web:7f37d9571d2850627ddcd9",
-                measurementId: "G-Y3NNN50WLQ",
-            };
-            firebase.initializeApp(firebaseConfig);
-
-            var db = firebase.firestore();
-        </script>
-
-        
     </body>
 </html>
