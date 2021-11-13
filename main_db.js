@@ -1,33 +1,43 @@
-// db.collection("users")
-//     .get()
-//     .then((querySnapshot) => {
-//         querySnapshot.forEach((doc) => {
-//             console.log(`${doc.id} => ${doc.data()}`);
-//         });
-//     });
-function format(date) {
-    var year = date.getFullYear(); //yyyy
-    var month = 1 + date.getMonth(); //M
-    month = month >= 10 ? month : "0" + month; //month 두자리로 저장
-    var day = date.getDate(); //d
-    day = day >= 10 ? day : "0" + day; //day 두자리로 저장
-    return year + "." + month + "." + day; //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
-}
-// let userId = localStorage.getItem("id"); //id
-// let userClassfication = localStorage.getItem("classfication"); //student, teacher, manager
-// let userName = localStorage.getItem("name");
-let tempDate = new Date();
-let userDate = format(tempDate);
-let docData = {
-    // id: userId,
-    // classfication: userClassfication,
-    // title: userTitle,
-    // author: userName,
-    date: userDate,
-};
-db.collection("board")
-    .doc("recruitment")
-    .set(docData)
-    .then(() => {
-        console.log(`doc written`);
-    });
+$(document).ready(function () {
+    console.log(`main`);
+    let tables = [];
+    let len = 0;
+    db.collection("board")
+        .doc("main")
+        .collection("boards")
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                len++;
+                // console.log(doc.id, " => ", doc.data());
+            });
+        });
+    let idx = 0;
+    db.collection("board")
+        .doc("main")
+        .collection("boards")
+        .get()
+        .then((querySnapshot) => {
+            console.log(len);
+            querySnapshot.forEach((doc) => {
+                $tr = $(`<tr class="tr"></tr>`);
+                $("tbody").append($tr);
+
+                $num = $(`<td>${idx++}</td>`);
+                $title = $(`<td>${doc.data().title}</td>`);
+                $recruitment = $(`<td>${doc.data().recruitment_number}</td>`);
+                $author = $(`<td>${doc.data().author}</td>`);
+                $date = $(`<td>${doc.data().date}</td>`);
+                $term = $(`<td>${doc.data().term}</td>`);
+
+                $($tr).append($num);
+                $($tr).append($title);
+                $($tr).append($recruitment);
+                $($tr).append($author);
+                $($tr).append($date);
+                $($tr).append($term);
+
+                console.log(doc.id, " => ", doc.data());
+            });
+        });
+});

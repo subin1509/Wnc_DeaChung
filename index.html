@@ -5,8 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link href="./main.css" rel="stylesheet" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
         <title>Document</title>
@@ -54,11 +54,14 @@
         <div id="top_navi">
             <button id="register_board">게시물 등록하기</button>
             <button id="my_board">내 게시물</button>
+            <span id="users"></span>
+            <button id="update">회원정보수정</button>
             <img
                 id="alert_icon"
                 src="./images/is_notification.png"
                 alt="알림 아이콘"
             />
+            <button id="logout_btn">로그아웃</button>
             <button id="login_btn">로그인</button>
         </div>
         <div id="side_navi">

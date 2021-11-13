@@ -10,6 +10,17 @@ h1 {
     display: none;
     margin-right: 50px;
 }
+#update {
+    display: none;
+    margin-left: 30px;
+}
+#logout_btn {
+    /* height: 30px; */
+    /* flex-grow: 1; */
+    /* display: inline-block; */
+    display: none;
+    margin-right: 50px;
+}
 #login_btn {
     /* height: 30px; */
     /* flex-grow: 1; */
