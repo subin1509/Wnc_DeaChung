@@ -17,6 +17,8 @@ function click_logout() {
     localStorage.removeItem("id");
     localStorage.removeItem("name");
     localStorage.removeItem("classfication");
+    localStorage.removeItem("timestamp");
+    localStorage.removeItem("teacher_id");
 
     document.getElementById("users").innerHTML = "";
     document.getElementById("users").style.color = "blue";
