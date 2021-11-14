@@ -12,7 +12,7 @@ $(document).ready(function () {
                 // console.log(doc.id, " => ", doc.data());
             });
         });
-    let idx = 0;
+    let idx = 1;
     db.collection("board")
         .doc("main")
         .collection("boards")
@@ -24,8 +24,18 @@ $(document).ready(function () {
                 $("tbody").append($tr);
 
                 $num = $(`<td>${idx++}</td>`);
-                $title = $(`<td>${doc.data().title}</td>`);
-                $recruitment = $(`<td>${doc.data().recruitment_number}</td>`);
+                $title = $(
+                    `<td id="${
+                        doc.id
+                    }" class="join_title" style="color : blue">${
+                        doc.data().title
+                    }</td>`
+                );
+                $($title).on("click", click_join_title);
+                $count = doc.data().count;
+                $recruitment = $(
+                    `<td>${$count}/${doc.data().recruitment_number}</td>`
+                );
                 $author = $(`<td>${doc.data().author}</td>`);
                 $date = $(`<td>${doc.data().date}</td>`);
                 $term = $(`<td>${doc.data().term}</td>`);
@@ -41,3 +51,8 @@ $(document).ready(function () {
             });
         });
 });
+function click_join_title() {
+    let child = open("./join.html", "_self");
+    sessionStorage.setItem("timestamp", this.id);
+    console.log(this.id);
+}

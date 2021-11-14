@@ -41,6 +41,7 @@ function click_save() {
         term: userTerm,
         text: userText,
         timestamp: userTimestamp,
+        count: 0,
     };
     // let now = new Date().getTime();
     // console.log(now);
