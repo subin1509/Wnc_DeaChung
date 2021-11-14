@@ -5,8 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+        <link href="./my_board.css" rel="stylesheet" />
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     </head>
@@ -17,11 +16,45 @@
         <br />
         <label for="my_board_list">내 게시물 리스트</label>
         <div id="my_board_list">
-            <table>
-                <thead></thead>
+            <table id="my_board_table">
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>모집인원</th>
+                        <th>작성자</th>
+                        <th>등록일</th>
+                        <th>과외 기간</th>
+                        <th>수정</th>
+                        <th>삭제</th>
+                    </tr>
+                </thead>
                 <tbody></tbody>
             </table>
+            <div id="div_modify">
+                <h3>수정할 부분만 입력하세요.</h3>
+                <label for="title">제목 : </label>
+                <input id="title" value="" />
+                <br />
+                <label for="recruitment_number">모집인원 : </label>
+                <input id="recruitment_number" />
+                <br />
+                <label for="author">작성자 : </label>
+                <input id="author" />
+                <br />
+
+                <label for="term">과외 기간 : </label>
+                <input id="term" /><br />
+                <br />
+                <label id="textarea">내용 작성 : </label>
+                <br />
+                <textarea id="text" name="text" rows="20" cols="100"></textarea>
+                <br />
+                <button id="modify">수정하기</button>
+                <button id="cancel">취소하기</button>
+            </div>
         </div>
+
         <script>
             // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
             // import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-analytics.js";
@@ -60,6 +93,7 @@
 
             // Initialize Firebase
         </script>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script src="./my_board.js"></script>
     </body>
 </html>
