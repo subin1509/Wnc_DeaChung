@@ -3,8 +3,10 @@
     <head> 
         <meta charset="UTF-8">
         <link href="login.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     </head>
     <body>
 
@@ -19,7 +21,7 @@
             <div class="loginbox">
 
                 <div>
-                    아이디   : <input type="text" id="id"><br><br>
+                    아이디   : <input type="text" id="id" required><br><br>
                     비밀번호 : <input type="password" id="password" required><br><br>
                 </div>
                 
@@ -44,16 +46,16 @@
             <table>
                 <tr>
                     <td>*아이디</td>
-                    <td><input type="text"></td>
+                    <td><input type="text" id="id1"></td>
                 </tr>
                 <tr>
                     <td>*비밀번호</td>
-                    <td><input type="password" id="pw"></td>
+                    <td><input type="password" id="pw1"></td>
                 </tr>
-                <tr>
+                <!--<tr>
                     <td>*비밀번호 확인</td>
                     <td><input type="password" id="pwcheck"></td>
-                </tr>
+                </tr>-->
                 <tr>
                     <td>*이름</td>
                     <td><input type="text" id="name"></td>
@@ -65,15 +67,22 @@
                         <input type="radio" name="classfication" value="admin">관리자</td>
                 </tr>
                 <tr>
+                    <td class="red" colspan="2">----다음부터 선생님만 입력----</td>
+                </tr>
+                <tr>
+                    <td>사진</td>
+                    <td><input class="teacher" type="file" id="img" accept=".jpg"></td>
+                </tr>
+                <tr>
                     <td>분야</td>
-                    <td><input type="text" readonly></td>
+                    <td><input class="teacher" type="text" id="subject"></td>
                 </tr>
                 <tr>
                     <td>경력</td>
                     <td>
-                        학교 <input type="text" readonly><br>
-                        수상 <input type="text" readonly><br>
-                        과외 경력 <input type="text" size=14 readonly></td>
+                        학교 <input class="teacher" type="text" id="school"><br>
+                        수상 <input class="teacher" type="text" id="award"><br>
+                        과외 경력 <input class="teacher" type="text" id="career"size=14></td>
                 </tr>
             </table><br><hr><br><br>
             <input type="submit" value="회원가입" id="signup1">
@@ -106,7 +115,7 @@
             firebase.initializeApp(firebaseConfig);
 
             var db = firebase.firestore();
-
+            var storage = firebase.storage();
             // Import the functions you need from the SDKs you need
             // import { initializeApp } from "firebase/app";
             // import { getAnalytics } from "firebase/analytics";
@@ -117,6 +126,7 @@
             // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
             // Initialize Firebase
+
         </script>
 
 
