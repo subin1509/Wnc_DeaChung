@@ -3,15 +3,31 @@
 let btn_div = document.getElementById("btn_div");
 let chatting = document.getElementsByClassName("chat")
 let mainDiv = document.getElementById("listDiv");
+let memberdiv = document.getElementById("member");
+let input_option = document.getElementById("my_option");
+let input_search = document.getElementById("my_search");
 
-// for(let i = 0; i < chatting.length; i++) {
-//     chatting[i].addEventListner("click", chat)
-// }
+input_option.addEventListener("change", do_list);
+input_search.addEventListener("change", find_list);
+let star_list = new Array();
 
-//별점순 / 수강생 수
-//검색 이름 / 분야 
+//수강생 수
+
+//로그인 정보에 맞게 버튼 활성화.
 
  $( document ).ready(function() {
+    if(localStorage.getItem("id") == null) {
+        let log_in_btn = document.createElement("button");
+        log_in_btn.innerHTML = "로그인";
+        log_in_btn.addEventListener("click", log_in);
+        memberdiv.appendChild(log_in_btn);
+    } else {
+        let mem_id = document.createElement("span");
+        mem_id.innerHTML = localStorage.getItem("id");
+        memberdiv.appendChild(mem_id);
+        //선생님, 학생, 관리자 확인?
+        //로그아웃 넣을까?
+    }
     db.collection("teachers")
     .get()
     .then((querySnapshot) => {
@@ -23,7 +39,7 @@ let mainDiv = document.getElementById("listDiv");
             makeRealDiv_img.className = "realitem"
             makeDiv.appendChild(makeRealDiv_img);
             
-            storageRef.child('images/' + `${doc.data().name}` + '.jpg').getDownloadURL().then(function(url) {
+            storageRef.child('images/' + `${doc.data().imgpath}`).getDownloadURL().then(function(url) {
                 // `url` is the download URL for 'images/stars.jpg'
               
                 // This can be downloaded directly:
@@ -95,11 +111,23 @@ let mainDiv = document.getElementById("listDiv");
             });
             makeRealDiv_btn.appendChild(repotbtn);
             //신고버튼이 눌리면 그 사람 리포트 횟수가 DB에 올라감.
+            var myobj = {
+                my_div : makeDiv,
+                starNum : Number(`${doc.data().estimate}`),
+                t_name : `${doc.data().name}`,
+                t_field : `${doc.data().field}`
+            }
+            star_list.push(myobj);
         });
     });
  })
 
 function do_chat() {
+    if(localStorage.getItem("id") == null) {
+        alert("로그인 후 이용가능합니다.");
+        return ;
+    }
+    
     alert("미구현");
 }
 
@@ -128,6 +156,10 @@ function do_repot(who) {
 }
 
 function do_put_star(who) {
+    if(localStorage.getItem('id') == null) {
+        alert("로그인 후 이용가능합니다.");
+        return ;
+    }
     var tmp_name_div = document.getElementById(who);
     let input_star = document.createElement("input");
     input_star.type = "number";
@@ -160,8 +192,80 @@ function doing_put_star(who, star_data) {
                 })
                 .then(() => {
                     alert("별점주기 완료.");
+                    //page.reload
                 });
             }
         })
     })
+}
+
+function log_in() {
+    open("./login.html");
+}
+
+function do_list() {
+    if(input_option.value == "star") {
+        //mainDiv(id =listDiv)의 모든 자식노드 없앰.
+        while(mainDiv.hasChildNodes()) {
+            mainDiv.removeChild(mainDiv.firstChild);
+        }
+        star_list.sort(function(a, b) {
+            return b.starNum - a.starNum;   //오름차순정렬
+        })
+        for(var k = 0; k < star_list.length; k++) {
+            mainDiv.appendChild(star_list[k].my_div);
+        }
+    } else if(input_option.value == "numberOfStudent") {
+        alert("수강생 많은 순으로 정렬");
+    } else {
+        return ;
+    }
+}
+
+function find_list() {
+    if(input_option.value == "name") {
+        //이름 찾기
+        if(input_search.value == "") {
+            //검색어를 지우면 원래상태로 돌아옴.
+            while(mainDiv.hasChildNodes()) {
+                mainDiv.removeChild(mainDiv.firstChild);
+            }
+            for(var k = 0; k < star_list.length; k++) {
+                mainDiv.appendChild(star_list[k].my_div);
+            }
+        }
+        else {
+            while(mainDiv.hasChildNodes()) {
+                mainDiv.removeChild(mainDiv.firstChild);
+            }
+            for(var k = 0; k < star_list.length; k++) {
+                if(star_list[k].t_name == input_search.value) {
+                    mainDiv.appendChild(star_list[k].my_div);
+                }
+            }
+        }
+    } else if(input_option.value == "subject") {
+        //분야 찾기
+        if(input_search.value == "") {
+            //검색어를 지우면 원래상태로 돌아옴.
+            while(mainDiv.hasChildNodes()) {
+                mainDiv.removeChild(mainDiv.firstChild);
+            }
+            for(var k = 0; k < star_list.length; k++) {
+                mainDiv.appendChild(star_list[k].my_div);
+            }
+        }
+        else {
+            while(mainDiv.hasChildNodes()) {
+                mainDiv.removeChild(mainDiv.firstChild);
+            }
+            for(var k = 0; k < star_list.length; k++) {
+                if(star_list[k].t_field == input_search.value) {
+                    mainDiv.appendChild(star_list[k].my_div);
+                }
+            }
+        }
+    } else {
+        alert("이름, 분야 목록으로 검색을 할 수 있습니다.");
+    }
 }

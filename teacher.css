@@ -2,6 +2,10 @@ h1 {
     text-align: center;
 }
 
+#member {
+    float: right;
+}
+
 #div1 {
     border: 1px solid white;
     background-color: lightgray;
