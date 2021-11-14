@@ -29,7 +29,7 @@ db.collection("teachers").get().then((querySnapshot) =>{ //페이지에 선생�
         let blacklist = document.createElement("div");
 
         item.className = "item";
-        item.id = doc.data().name;
+        item.id = doc.id;
         image.className = "image";
         info.className = "info";
         blacklist.className = "blacklist";
@@ -96,10 +96,10 @@ db.collection("teachers").get().then((querySnapshot) =>{ //페이지에 선생�
         let btn = document.createElement("button");
 
         span.id = "report";
-        btn.id = doc.data().name+"Btn";
+        btn.id = doc.id+"Btn";
         btn.className = "blacklistBtn";
         btn.addEventListener("click", function(){
-            var btnId = `${doc.data().name}`;
+            var btnId = `${doc.id}`;
             //var blackval = `${doc.data().blacklist}`;
             blacklistfunc(btnId);
         });
@@ -122,11 +122,11 @@ db.collection("teachers").get().then((querySnapshot) =>{ //페이지에 선생�
 
 
         if(doc.data().blacklist==true){
-            document.getElementById(doc.data().name).style.backgroundColor = "rgb(175, 115, 115)";
+            document.getElementById(doc.id).style.backgroundColor = "rgb(175, 115, 115)";
             btn.innerHTML = "블랙리스트 해제";
 
         }else{
-            document.getElementById(doc.data().name).style.backgroundColor = "rgb(243, 243, 243)";
+            document.getElementById(doc.id).style.backgroundColor = "rgb(243, 243, 243)";
             btn.innerHTML = "블랙리스트 등록";
         }
     });
@@ -196,16 +196,18 @@ searchBtn.addEventListener("click", function(){
 });
 
 function blacklistCheck(searchVal){
-    db.doc("teachers/"+searchVal).get().then(function(querySnapshot){
-        for(let doc in querySnapshot.data()){
-            if(`${doc}`== "blacklist" && `${querySnapshot.data()[doc]}`=="false"){
-                alert("블랙리스트에 등록되지 않은 선생님입니다.");
-                break;
-            }else if(`${doc}`== "blacklist" && `${querySnapshot.data()[doc]}`=="true"){
-                alert("블랙리스트에 등록되어있는 선생님입니다.")
-                break;
+    db.collection("teachers").get().then((querySnapshot) =>{ //페이지에 선생님 목록 업데이트
+        querySnapshot.forEach((doc) =>{
+            if(doc.data().name == searchVal){
+                if(doc.data().blacklist==false){
+                    console.log("false");
+                    alert("블랙리스트에 등록되지 않은 선생님입니다.");
+                }else if(doc.data().blacklist==true){
+                    console.log("true");
+                    alert("블랙리스트에 등록되어있는 선생님입니다.");
+                }
             }
-        }
-    })
+        });
+    });
 }
 /*blacklistCheck function*/
