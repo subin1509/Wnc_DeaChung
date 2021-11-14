@@ -24,17 +24,18 @@ hr {
     width: 100%;
 }
 
-.div {
-    padding: 10%;
+.left {
+    float: left;
+    border: 1px solid white;
 }
 
-.loginbox {
-    padding: 5%;
-    border: 1px solid gray;
-    padding-left: 5%;
-    padding-right: 5%;
+.left1 {
+    float: left;
+    width: 40%;
+    border: 1px solid white;
 }
 
-.red {
-    color: red;
+.left2 {
+    border: 1px solid white;
 }
+
