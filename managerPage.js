@@ -106,7 +106,6 @@ db.collection("teachers").get().then((querySnapshot) =>{ //페이지에 선생�
         
 
         span.innerHTML = "신고 접수 : "+doc.data().report+"   ";
-        btn.innerHTML = "블랙리스트 등록";
 
         if(doc.data().report < 3){
             btn.disabled = true;
@@ -120,6 +119,16 @@ db.collection("teachers").get().then((querySnapshot) =>{ //페이지에 선생�
         item.appendChild(info);
         item.appendChild(blacklist);
         parentDiv.appendChild(item);
+
+
+        if(doc.data().blacklist==true){
+            document.getElementById(doc.data().name).style.backgroundColor = "rgb(175, 115, 115)";
+            btn.innerHTML = "블랙리스트 해제";
+
+        }else{
+            document.getElementById(doc.data().name).style.backgroundColor = "rgb(243, 243, 243)";
+            btn.innerHTML = "블랙리스트 등록";
+        }
     });
 });
 
@@ -152,6 +161,7 @@ function blacklistAdd(name){
         blacklist: true
     })
     alert("블랙리스트로 등록되었습니다.");
+    document.getElementById(name).style.backgroundColor = "rgb(175, 115, 115)";
     document.getElementById(name+"Btn").innerHTML = "블랙리스트 해제";
 }
 
@@ -160,6 +170,7 @@ function blacklistDel(name){
         blacklist: false
     })
     alert("블랙리스트가 해제되었습니다.");
+    document.getElementById(name).style.backgroundColor = "rgb(243, 243, 243)";
     document.getElementById(name+"Btn").innerHTML = "블랙리스트 등록";
 }
 /*blacklist function*/
