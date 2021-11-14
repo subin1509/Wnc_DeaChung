@@ -35,12 +35,12 @@ db.collection("teachers").get().then((querySnapshot) =>{ //페이지에 선생�
         blacklist.className = "blacklist";
 
         /*image div*/
-        var fileName = doc.data().name+'.jpg';
+        var fileName = doc.data().imgpath;
         var spaceRef = imagesRef.child(fileName);
         var path = spaceRef.fullPath;
         var img = document.createElement("img");
         img.id = fileName;
-        console.log(path);
+        //console.log(path); 이미지 경로 확인
         image.appendChild(img);
 
 
@@ -96,12 +96,14 @@ db.collection("teachers").get().then((querySnapshot) =>{ //페이지에 선생�
         let btn = document.createElement("button");
 
         span.id = "report";
-        btn.id = doc.data().name;
+        btn.id = doc.data().name+"Btn";
         btn.className = "blacklistBtn";
         btn.addEventListener("click", function(){
             var btnId = `${doc.data().name}`;
-            blacklistAdd(btnId);
+            //var blackval = `${doc.data().blacklist}`;
+            blacklistfunc(btnId);
         });
+        
 
         span.innerHTML = "신고 접수 : "+doc.data().report+"   ";
         btn.innerHTML = "블랙리스트 등록";
@@ -123,25 +125,76 @@ db.collection("teachers").get().then((querySnapshot) =>{ //페이지에 선생�
 
 //var docRef = db.doc("teachers/한석원"); 정보 가져올 대상
 
-let searchBtn = document.getElementById("searchBtn");
-let blacklistBtn = document.getElementsByClassName("blacklistBtn");
-let searchSelect = document.getElementById("searchSelect");
 
-searchSelect.addEventListener("change", changeSearch);
+/*blacklist function*/
+let blacklistBtn = document.getElementsByClassName("blacklistBtn");
 
 for(let i=0; i<blacklistBtn.length; i++){
     document.getElementById("blacklist"+i)
             .addEventListener("click", blacklistAdd);
 }
 
-function changeSearch(){
-    console.log(searchSelect.options[searchSelect.selectedIndex].text);
-} //selectbox
-
-
+function blacklistfunc(name){
+    db.doc("teachers/"+name).get().then(function(querySnapshot){
+        for(let doc in querySnapshot.data()){
+            if(`${doc}`== "blacklist" && `${querySnapshot.data()[doc]}`=="false"){
+                blacklistAdd(name);
+                break;
+            }else if(`${doc}`== "blacklist" && `${querySnapshot.data()[doc]}`=="true"){
+                blacklistDel(name);
+                break;
+            }
+        }
+    })
+}
 function blacklistAdd(name){
     db.doc("teachers/"+name).update({
         blacklist: true
     })
     alert("블랙리스트로 등록되었습니다.");
+    document.getElementById(name+"Btn").innerHTML = "블랙리스트 해제";
 }
+
+function blacklistDel(name){
+    db.doc("teachers/"+name).update({
+        blacklist: false
+    })
+    alert("블랙리스트가 해제되었습니다.");
+    document.getElementById(name+"Btn").innerHTML = "블랙리스트 등록";
+}
+/*blacklist function*/
+
+
+/*goToMain function*/
+let mainBtn = document.getElementById("goToMain");
+
+mainBtn.addEventListener("click", gotoMain);
+
+function gotoMain(){
+    open("./index.html", "_self");
+}
+/*goToMain function*/
+
+
+/*blacklistCheck function*/
+let searchBtn = document.getElementById("searchBtn");
+
+searchBtn.addEventListener("click", function(){
+    let searchVal = document.getElementById("searchInput").value;
+    blacklistCheck(searchVal);
+});
+
+function blacklistCheck(searchVal){
+    db.doc("teachers/"+searchVal).get().then(function(querySnapshot){
+        for(let doc in querySnapshot.data()){
+            if(`${doc}`== "blacklist" && `${querySnapshot.data()[doc]}`=="false"){
+                alert("블랙리스트에 등록되지 않은 선생님입니다.");
+                break;
+            }else if(`${doc}`== "blacklist" && `${querySnapshot.data()[doc]}`=="true"){
+                alert("블랙리스트에 등록되어있는 선생님입니다.")
+                break;
+            }
+        }
+    })
+}
+/*blacklistCheck function*/

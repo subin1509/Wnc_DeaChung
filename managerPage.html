@@ -11,19 +11,25 @@
     <body>
         <h1>관리자 페이지</h1>
         <div id="searchDiv">
+            <button id="goToMain">MAIN</button>
             <span id="searchSpan">
                 <select id="searchSelect" name="option">
                     <option value="name">이름</option>
+                    <!--
                     <option value="estimate">별점</option>
                     <option value="most">수강</option>
+                    -->
                 </select>
-                <input id="searchInput" type="search" placeholder="검색어 입력"/>
+                <input id="searchInput" type="text" placeholder="검색어 입력">
                 <button id="searchBtn">검색</button>
             </span>
         </div>
+        <p id="blackalert">
+            * 블랙리스트 등록은 신고 접수가 3회 이상 접수되었을 때부터 가능합니다 *
+            * 검색 시에는 이름을 정확히 입력해주세요 *
+        </p>
         <br>
         <div id="teacherList" class="container">
-
         </div>
         <script type="text/javascript" src="managerPage.js"></script>
     </body>
