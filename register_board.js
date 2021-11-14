@@ -41,6 +41,7 @@ function click_save() {
         term: userTerm,
         text: userText,
         timestamp: userTimestamp,
+        count: 0,
     };
     // let now = new Date().getTime();
     // console.log(now);
@@ -59,7 +60,8 @@ function click_save() {
         .set(docData)
         .then(() => {
             console.log(`doc user writtend`);
-            // close();
+            opener.document.location.reload();
+            close();
         });
 }
 function click_cancel() {

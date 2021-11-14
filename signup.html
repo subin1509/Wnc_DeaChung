@@ -10,37 +10,53 @@
     </head>
     <body>
 
-
-        <div id="login_box" class="center" class="login">
-
-
-            <div class="div">
-                <h1 id="main" onclick="location.href='index.html'">main</h1>
-            </div>
-
-            <div class="loginbox">
-
-                <div>
-                    아이디   : <input type="text" id="id" required><br><br>
-                    비밀번호 : <input type="password" id="password" required><br><br>
-                </div>
-                
-                <div>
-                    <input type="radio" name="member" value="student">학생
-                    <input type="radio" name="member" value="teacher">선생님
-                    <input type="radio" name="member" value="manager">관리자<br><br><br>
-                </div>
-
-                <div>
-                    <input type="submit" value="로그인" id="login">
-                    <button id="signup">회원가입</button>
-                </div>
-            </div>
-
-
+        <div id="signup_box" class="center">
+            <br><hr>
+            <table>
+                <tr>
+                    <td>*아이디</td>
+                    <td><input type="text" id="id1" required></td>
+                </tr>
+                <tr>
+                    <td>*비밀번호</td>
+                    <td><input type="password" id="pw1" required></td>
+                </tr>
+                <!--<tr>
+                    <td>*비밀번호 확인</td>
+                    <td><input type="password" id="pwcheck"></td>
+                </tr>-->
+                <tr>
+                    <td>*이름</td>
+                    <td><input type="text" id="name" required></td>
+                </tr>
+                <tr>
+                    <td>*회원분류</td>
+                    <td><input type="radio" name="classfication" value="student">학생
+                        <input type="radio" name="classfication" value="teacher">선생님
+                        <input type="radio" name="classfication" value="admin">관리자</td>
+                </tr>
+                <tr>
+                    <td class="red" colspan="2">----다음부터 선생님만 입력----</td>
+                </tr>
+                <tr>
+                    <td>사진</td>
+                    <td><input class="teacher" type="file" id="img" accept=".jpg" disabled></td>
+                </tr>
+                <tr>
+                    <td>분야</td>
+                    <td><input class="teacher" type="text" id="subject" disabled></td>
+                </tr>
+                <tr>
+                    <td>경력</td>
+                    <td>
+                        학교 <input class="teacher" type="text" id="school" disabled><br>
+                        수상 <input class="teacher" type="text" id="award" disabled><br>
+                        과외 경력 <input class="teacher" type="text" id="career"size=14 disabled></td>
+                </tr>
+            </table><br><hr><br><br>
+            <input type="submit" value="회원가입" id="signup1">
+            <button id="cancel">취소</button>
         </div>
-
-
 
         <script>
             // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
@@ -83,7 +99,7 @@
         </script>
 
 
-        <script type="text/javascript" src="login.js"></script>
+        <script type="text/javascript" src="signup.js"></script>
 
     </body>
 

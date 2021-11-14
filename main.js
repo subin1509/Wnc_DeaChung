@@ -6,6 +6,7 @@ let update = document.getElementById("update");
 let logout_btn = document.getElementById("logout_btn");
 let register = document.getElementById("register_board");
 let my_board = document.getElementById("my_board");
+let search = document.getElementById("category_search");
 function click_register() {
     open("./register_board.html");
 }
@@ -16,6 +17,8 @@ function click_logout() {
     localStorage.removeItem("id");
     localStorage.removeItem("name");
     localStorage.removeItem("classfication");
+    localStorage.removeItem("timestamp");
+    localStorage.removeItem("teacher_id");
 
     document.getElementById("users").innerHTML = "";
     document.getElementById("users").style.color = "blue";
