@@ -12,7 +12,6 @@ input_search.addEventListener("change", find_list);
 let star_list = new Array();
 
 //수강생 수
-
 //로그인 정보에 맞게 버튼 활성화.
 
  $( document ).ready(function() {
@@ -23,11 +22,19 @@ let star_list = new Array();
         memberdiv.appendChild(log_in_btn);
     } else {
         let mem_id = document.createElement("span");
-        mem_id.innerHTML = localStorage.getItem("id");
+        console.log(localStorage.getItem("classfication"));
+        if(localStorage.getItem("classfication") == "teacher") {
+            mem_id.innerHTML = localStorage.getItem("name") + "선생님";
+        } else if(localStorage.getItem("classfication") == "student") {
+            mem_id.innerHTML = localStorage.getItem("name") + "학생";
+        } else if(localStorage.getItem("classfication") == "manager") {
+            mem_id.innerHTML = localStorage.getItem("name") + "매니저님";
+        }
         memberdiv.appendChild(mem_id);
-        //선생님, 학생, 관리자 확인?
         //로그아웃 넣을까?
     }
+    
+
     db.collection("teachers")
     .get()
     .then((querySnapshot) => {

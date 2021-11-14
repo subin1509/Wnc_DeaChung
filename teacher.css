@@ -2,6 +2,10 @@ h1 {
     text-align: center;
 }
 
+#go_main {
+    float: left;   
+}
+
 #member {
     float: right;
 }
